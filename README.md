@@ -199,3 +199,7 @@ Entry extraction failures become diagnostics when other archive evidence can sti
 `SurfaceResolver` resolves the names provided by one package. `BindingResolver` resolves dependency bindings for a project directory. The core package defines these interfaces without running package managers or making network requests.
 
 Further acquisition adapters are planned. The current package contains the shared types, matching rules, merge helpers, resolver interfaces, project-surface join, local binding parsers, artifact inspectors, and the built-in Python catalog used by Hyrum.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
