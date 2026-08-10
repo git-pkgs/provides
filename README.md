@@ -72,6 +72,29 @@ result := provides.MergeSurfaceResults(purl, manifest)
 
 Non-fatal resolver problems are returned as `Diagnostic` values beside any successful mappings.
 
+## Usage
+
+Resolve package surfaces once for a dependency snapshot, then reuse the result for every source import. This avoids repeating package resolution and keeps each lookup to a scan of the cached surfaces:
+
+```go
+project, err := provides.ResolveProjectSurfaces(
+	context.Background(),
+	curated.Python(),
+	packages,
+	provides.SurfaceOptions{},
+)
+if err != nil {
+	return err
+}
+
+for _, name := range imports {
+	result := provides.MatchImport("python", name, project)
+	// Use result.Matches and result.Diagnostics.
+}
+```
+
+`ResolveImport` is a convenience for a single lookup. When checking several imports from the same project, use `ResolveProjectSurfaces` and `MatchImport` as above.
+
 ## Curated Python surfaces
 
 The `curated` package includes local mappings for PyYAML, `brotlipy`, Brotli, Pillow, and Beautiful Soup. `ResolveProjectSurfaces` joins caller-supplied dependency PURLs to those mappings:
