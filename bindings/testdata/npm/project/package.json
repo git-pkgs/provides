@@ -1,0 +1,20 @@
+{
+  "name": "example-project",
+  "private": true,
+  "dependencies": {
+    "react": "^19.0.0",
+    "my-react": "npm:react@^18.3.0",
+    "toolkit": "npm:@scope/toolkit@2",
+    "local-package": "file:../local-package",
+    "git-package": "git+https://example.com/git-package.git"
+  },
+  "devDependencies": {
+    "typescript": "~5.9.0"
+  },
+  "optionalDependencies": {
+    "react": "^19.0.0"
+  },
+  "peerDependencies": {
+    "vue": ">=3"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "demo/__init__.py": "\"\"\"Demo package.\"\"\"\n",
+  "demo/submodule.py": "VALUE = \"demo\"\n",
+  "helper.py": "VALUE = \"helper\"\n",
+  "shared/feature.py": "VALUE = \"shared\"\n",
+  "demo_pkg-1.0.dist-info/METADATA": "Metadata-Version: 2.5\nName: demo-pkg\nVersion: 1.0\nImport-Name: demo\nImport-Name: helper\nImport-Namespace: shared\n\nFixture metadata.\n"
+}

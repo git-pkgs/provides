@@ -1,0 +1,5 @@
+{
+  "META-INF/MANIFEST.MF": "Manifest-Version: 1.0\nAutomatic-Module-Name: org.example.demo\n\n",
+  "org/example/api/Client.class": "fixture",
+  "org/example/internal/Helper.class": "fixture"
+}

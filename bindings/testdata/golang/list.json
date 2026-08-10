@@ -1,0 +1,29 @@
+{
+  "ImportPath": "fmt",
+  "Name": "fmt",
+  "Standard": true
+}
+{
+  "ImportPath": "example.com/application",
+  "Name": "main",
+  "Module": {
+    "Path": "example.com/application",
+    "Main": true
+  }
+}
+{
+  "ImportPath": "example.com/dep/foo",
+  "Name": "foo",
+  "Module": {
+    "Path": "example.com/dep",
+    "Version": "v1.2.3"
+  }
+}
+{
+  "ImportPath": "example.com/dep/internal/bar",
+  "Name": "barpkg",
+  "Module": {
+    "Path": "example.com/dep",
+    "Version": "v1.2.3"
+  }
+}

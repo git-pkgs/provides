@@ -1,0 +1,43 @@
+{
+  "packages": [
+    {
+      "id": "path+file:///example#0.1.0",
+      "name": "example",
+      "version": "0.1.0"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#actual-package@2.1.0",
+      "name": "actual-package",
+      "version": "2.1.0"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#normal-dep@1.4.0",
+      "name": "normal-dep",
+      "version": "1.4.0"
+    }
+  ],
+  "workspace_members": [
+    "path+file:///example#0.1.0"
+  ],
+  "workspace_default_members": [
+    "path+file:///example#0.1.0"
+  ],
+  "resolve": {
+    "root": "path+file:///example#0.1.0",
+    "nodes": [
+      {
+        "id": "path+file:///example#0.1.0",
+        "deps": [
+          {
+            "name": "renamed_crate",
+            "pkg": "registry+https://github.com/rust-lang/crates.io-index#actual-package@2.1.0"
+          },
+          {
+            "name": "normal_dep",
+            "pkg": "registry+https://github.com/rust-lang/crates.io-index#normal-dep@1.4.0"
+          }
+        ]
+      }
+    ]
+  }
+}

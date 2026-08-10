@@ -1,0 +1,4 @@
+{
+  "example-package-1.0.0/Cargo.toml": "[package]\nname = \"example-package\"\nversion = \"1.0.0\"\n\n[lib]\nname = \"custom_crate\"\npath = \"src/custom.rs\"\n",
+  "example-package-1.0.0/src/custom.rs": "pub const VALUE: &str = \"fixture\";\n"
+}

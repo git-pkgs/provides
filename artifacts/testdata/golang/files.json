@@ -1,0 +1,9 @@
+{
+  "example.com/mod@v1.2.3/go.mod": "module example.com/mod\n\ngo 1.25\n",
+  "example.com/mod@v1.2.3/root.go": "package mod\n",
+  "example.com/mod@v1.2.3/foo/foo.go": "package foo\n",
+  "example.com/mod@v1.2.3/internal/bar/package.go": "package different_name\n",
+  "example.com/mod@v1.2.3/onlytests/only_test.go": "package onlytests\n",
+  "example.com/mod@v1.2.3/testdata/fixture/ignored.go": "package ignored\n",
+  "example.com/mod@v1.2.3/vendor/example.com/ignored/ignored.go": "package ignored\n"
+}

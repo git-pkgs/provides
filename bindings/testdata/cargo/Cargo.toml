@@ -1,0 +1,16 @@
+[package]
+name = "example"
+version = "0.1.0"
+
+[dependencies]
+serde = "1"
+renamed-crate = { package = "actual-package", version = "2" }
+hyphenated-package = "1"
+local-package = { path = "../local-package" }
+git-package = { git = "https://example.com/git-package.git" }
+
+[dev-dependencies]
+dev-alias = { package = "dev-package", version = "3" }
+
+[target.'cfg(unix)'.dependencies]
+unix-alias = { package = "unix-package", version = "1" }

@@ -1,0 +1,7 @@
+{
+  "package/package.json": "{\n  \"name\": \"example-package\",\n  \"version\": \"1.0.0\",\n  \"exports\": {\n    \".\": \"./dist/index.js\",\n    \"./direct\": \"./dist/direct.js\",\n    \"./features/*\": \"./dist/features/*.js\",\n    \"./private\": null\n  }\n}\n",
+  "package/dist/index.js": "export const root = true;\n",
+  "package/dist/direct.js": "export const direct = true;\n",
+  "package/dist/features/one.js": "export const one = true;\n",
+  "package/dist/features/nested/two.js": "export const two = true;\n"
+}
