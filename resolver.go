@@ -35,13 +35,15 @@ func Chain(resolvers ...SurfaceResolver) SurfaceResolverFunc {
 				continue
 			}
 			res, err := r.ResolveSurface(ctx, pkg, options)
+			// Diagnostics are collected once here; strip them from what
+			// goes to MergeSurfaceResults so they are not merged twice.
 			diagnostics = append(diagnostics, res.Diagnostics...)
 			if err != nil {
 				diagnostics = append(diagnostics, Diagnostic{Source: "chain", Message: err.Error()})
 				continue
 			}
 			if len(res.Surface.Provides) > 0 {
-				results = append(results, res)
+				results = append(results, SurfaceResult{Surface: res.Surface})
 			}
 		}
 		merged := MergeSurfaceResults(pkg.PURL, results...)

@@ -63,8 +63,13 @@ var conventions = map[string]func(*purl.PURL) []provides.ProvidedName{
 		return []provides.ProvidedName{prefix("javascript", name, "module", "/", false)}
 	},
 	"pypi": func(p *purl.PURL) []provides.ProvidedName {
-		// PEP 503 treats -, _, . as equivalent and the registry name is
-		// case-insensitive; module names are lowercase with underscores.
+		// Distribution names are case-insensitive; the purl spec
+		// lowercases and replaces _ with - so p.Name arrives normalised.
+		// Hyphens are not valid in Python identifiers, so a hyphenated
+		// distribution conventionally installs an underscored module. A
+		// dot is preserved because dotted distribution names
+		// (`zope.interface`, `ruamel.yaml`) conventionally install as
+		// namespace packages with the same dotted import path.
 		return []provides.ProvidedName{
 			prefix("python", strings.ToLower(underscore(p.Name)), "module", ".", false),
 		}

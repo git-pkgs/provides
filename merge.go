@@ -82,7 +82,12 @@ func MergeSurfaceResults(purl string, results ...SurfaceResult) SurfaceResult {
 		if names[i].Match != names[j].Match {
 			return names[i].Match < names[j].Match
 		}
-		return names[i].Separator < names[j].Separator
+		if names[i].Separator != names[j].Separator {
+			return names[i].Separator < names[j].Separator
+		}
+		// Case-sensitive before case-insensitive so the exact-spelling
+		// entry sorts first when both exist.
+		return !names[i].CaseInsensitive && names[j].CaseInsensitive
 	})
 
 	return SurfaceResult{

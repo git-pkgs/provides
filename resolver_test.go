@@ -77,6 +77,30 @@ func TestChainContinuesAfterError(t *testing.T) {
 	}
 }
 
+func TestChainDiagnosticsNotDoubleCounted(t *testing.T) {
+	t.Parallel()
+
+	noisy := SurfaceResolverFunc(func(_ context.Context, pkg Package, _ SurfaceOptions) (SurfaceResult, error) {
+		return SurfaceResult{
+			Surface:     Surface{PURL: pkg.PURL, Provides: []ProvidedName{{Language: "x", Name: "n"}}},
+			Diagnostics: []Diagnostic{{Source: "noisy", Message: "once"}},
+		}, nil
+	})
+	res, err := Chain(noisy).ResolveSurface(context.Background(), Package{PURL: "pkg:npm/x"}, SurfaceOptions{})
+	if err != nil {
+		t.Fatal(err)
+	}
+	count := 0
+	for _, d := range res.Diagnostics {
+		if d.Source == "noisy" {
+			count++
+		}
+	}
+	if count != 1 {
+		t.Errorf("diagnostic emitted %d times, want 1: %+v", count, res.Diagnostics)
+	}
+}
+
 func TestChainSkipsNilAndEmpty(t *testing.T) {
 	t.Parallel()
 

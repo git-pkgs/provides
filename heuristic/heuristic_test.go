@@ -47,6 +47,12 @@ func TestPyPI(t *testing.T) {
 	if !f.Matches("flask") || f.Matches("Flask") {
 		t.Errorf("pypi case: %+v", f)
 	}
+	// Dotted distributions install as namespace packages with the dot
+	// retained in the import path.
+	z := firstName(t, resolveOne(t, "pkg:pypi/zope.interface"))
+	if z.Name != "zope.interface" || !z.Matches("zope.interface.declarations") {
+		t.Errorf("dotted distribution should keep dot: %+v", z)
+	}
 }
 
 func TestGo(t *testing.T) {
