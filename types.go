@@ -47,12 +47,20 @@ type Surface struct {
 
 // ProvidedName is a source-level name supplied by a package.
 type ProvidedName struct {
-	Language  string
-	Name      string
-	Kind      string
-	Match     MatchMode
+	Language string
+	Name     string
+	Kind     string
+	Match    MatchMode
+	// Separator is the boundary between a prefix name and a matched
+	// descendant, for example "." for a Python module or "/" for an npm
+	// subpath. It is unused for MatchExact.
 	Separator string
-	Evidence  []Evidence
+	// CaseInsensitive folds ASCII case when matching. Set it for languages
+	// whose module or namespace lookup is itself case-insensitive, for
+	// example PHP, where `use GuzzleHttp\Client` and `use guzzlehttp\client`
+	// resolve to the same class. Name still retains its canonical spelling.
+	CaseInsensitive bool
+	Evidence        []Evidence
 }
 
 // Binding connects a package to the name used by one project.

@@ -3,14 +3,20 @@ package provides
 import "strings"
 
 // Matches reports whether imported is covered by the provided name. Matching
-// is case-sensitive because Name retains its exact source-visible spelling.
+// is case-sensitive by default because Name retains its exact source-visible
+// spelling; CaseInsensitive folds ASCII case for languages whose lookup does.
 func (name ProvidedName) Matches(imported string) bool {
-	if imported == name.Name {
+	target, candidate := name.Name, imported
+	if name.CaseInsensitive {
+		target = strings.ToLower(target)
+		candidate = strings.ToLower(candidate)
+	}
+	if candidate == target {
 		return true
 	}
 	return normalizedMatchMode(name.Match) == MatchPrefix &&
 		name.Separator != "" &&
-		strings.HasPrefix(imported, name.Name+name.Separator)
+		strings.HasPrefix(candidate, target+name.Separator)
 }
 
 // Matches reports whether imported is covered by the project binding. Prefix
