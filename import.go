@@ -62,12 +62,13 @@ func MatchImport(language, name string, project ProjectSurfaceResult) ImportResu
 				provided.Separator = ""
 			}
 			key := importMatchKey{
-				purl:      surface.PURL,
-				language:  provided.Language,
-				name:      provided.Name,
-				kind:      provided.Kind,
-				match:     provided.Match,
-				separator: provided.Separator,
+				purl:            surface.PURL,
+				language:        provided.Language,
+				name:            provided.Name,
+				kind:            provided.Kind,
+				match:           provided.Match,
+				separator:       provided.Separator,
+				caseInsensitive: provided.CaseInsensitive,
 			}
 			if existing, ok := matches[key]; ok {
 				provided.Evidence = mergeEvidence(existing.Provided.Evidence, provided.Evidence)
@@ -112,10 +113,11 @@ func MatchImport(language, name string, project ProjectSurfaceResult) ImportResu
 }
 
 type importMatchKey struct {
-	purl      string
-	language  string
-	name      string
-	kind      string
-	match     MatchMode
-	separator string
+	purl            string
+	language        string
+	name            string
+	kind            string
+	match           MatchMode
+	separator       string
+	caseInsensitive bool
 }

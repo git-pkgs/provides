@@ -39,20 +39,22 @@ func MergeSurfaceResults(purl string, results ...SurfaceResult) SurfaceResult {
 				separator = ""
 			}
 			key := providedNameKey{
-				language:  name.Language,
-				name:      name.Name,
-				kind:      name.Kind,
-				match:     match,
-				separator: separator,
+				language:        name.Language,
+				name:            name.Name,
+				kind:            name.Kind,
+				match:           match,
+				separator:       separator,
+				caseInsensitive: name.CaseInsensitive,
 			}
 			current, ok := provided[key]
 			if !ok {
 				current = ProvidedName{
-					Language:  name.Language,
-					Name:      name.Name,
-					Kind:      name.Kind,
-					Match:     match,
-					Separator: separator,
+					Language:        name.Language,
+					Name:            name.Name,
+					Kind:            name.Kind,
+					Match:           match,
+					Separator:       separator,
+					CaseInsensitive: name.CaseInsensitive,
 				}
 			}
 			current.Evidence = mergeEvidence(current.Evidence, name.Evidence)
@@ -154,11 +156,12 @@ func MergeBindingResults(results ...BindingResult) BindingResult {
 }
 
 type providedNameKey struct {
-	language  string
-	name      string
-	kind      string
-	match     MatchMode
-	separator string
+	language        string
+	name            string
+	kind            string
+	match           MatchMode
+	separator       string
+	caseInsensitive bool
 }
 
 type bindingKey struct {

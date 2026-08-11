@@ -12,7 +12,7 @@ go get github.com/git-pkgs/provides
 
 `Surface` maps a versioned PURL to its provided source names. `Binding` connects a PURL to the imported and local names used by one project. An aliased binding may also retain the package-side target name. Both retain the evidence used to produce the mapping.
 
-`ProvidedName.Name` is the exact source-visible spelling. Package-manager normalisation does not apply to it, and matching is case-sensitive. `flask` therefore does not match `Flask`.
+`ProvidedName.Name` is the exact source-visible spelling. Package-manager normalisation does not apply to it, and matching is case-sensitive by default. `flask` therefore does not match `Flask`. Set `CaseInsensitive` for languages whose module or namespace lookup folds case, for example PHP, where `use GuzzleHttp\Client` and `use guzzlehttp\client` resolve identically.
 
 ## Matching names
 
@@ -115,6 +115,20 @@ result, err := provides.ResolveProjectSurfaces(
 ```
 
 This path reads no files, runs no package-manager commands, and makes no network requests. PyPI distribution names are normalised for catalog lookup, while each returned `Surface.PURL` retains the caller's spelling and version. Unknown packages are omitted without producing a diagnostic.
+
+## Heuristic surfaces
+
+The `heuristic` package derives conventional source names from a package's PURL type and name alone: an npm package `ws` provides module `ws` and any `ws/...` subpath, PyPI `Engine-IO-Parser` provides `engine_io_parser`, gem `active_support` provides both feature `active_support` and constant `ActiveSupport`, Cargo `tokio-util` provides crate `tokio_util`. It covers `npm`, `pypi`, `golang`, `gem`, `cargo`, `composer`, `hex`, and `maven`; other PURL types resolve to an empty surface. Every returned name carries `EvidenceHeuristic` so callers can distinguish a naming-convention guess from a verified mapping.
+
+Packages whose importable name is not a mechanical transform of their registry name (PyYAML → `yaml`, Pillow → `PIL`, most Composer PSR-4 roots) need curated data or an artifact resolver. `Chain` runs several resolvers over the same package and merges their results, so an authoritative source can be tried first and the naming convention fills whatever it does not cover:
+
+```go
+resolver := provides.Chain(curated.Python(), heuristic.Resolver())
+
+project, err := provides.ResolveProjectSurfaces(ctx, resolver, packages, provides.SurfaceOptions{})
+```
+
+For PyYAML this returns both `yaml` (curated) and `pyyaml` (heuristic) with their respective evidence; `MatchImport("python", "yaml", project)` matches on the curated entry while a package the catalog does not list still resolves via the heuristic.
 
 ## Resolving an import
 

@@ -45,6 +45,27 @@ func TestProvidedNameMatchesPrefixAtSeparatorBoundary(t *testing.T) {
 	}
 }
 
+func TestProvidedNameCaseInsensitive(t *testing.T) {
+	t.Parallel()
+
+	name := ProvidedName{
+		Language:        "php",
+		Name:            "GuzzleHttp",
+		Match:           MatchPrefix,
+		Separator:       `\`,
+		CaseInsensitive: true,
+	}
+
+	for _, imported := range []string{"GuzzleHttp", `GuzzleHttp\Client`, `guzzlehttp\client`, `GUZZLEHTTP\Client`} {
+		if !name.Matches(imported) {
+			t.Errorf("Matches(%q) = false, want case-folded true", imported)
+		}
+	}
+	if name.Matches(`GuzzleHttpClient`) {
+		t.Error("prefix boundary must still be enforced after case folding")
+	}
+}
+
 func TestProvidedNameExactSubpathDoesNotMatchDescendants(t *testing.T) {
 	t.Parallel()
 
