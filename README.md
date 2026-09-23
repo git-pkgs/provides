@@ -239,4 +239,4 @@ Further acquisition adapters are planned. The current package contains the share
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+[MIT](LICENSE).
