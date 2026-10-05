@@ -1,7 +1,7 @@
 github.com/BurntSushi/toml v1.6.0 h1:dRaEfpa2VI55EwlIW72hMRHdWouJeRF7TPYhI+AUQjk=
 github.com/BurntSushi/toml v1.6.0/go.mod h1:ukJfTF/6rtPPRCnwkur4qwRxa8vTRFBF0uk2lLoLwho=
-github.com/git-pkgs/archives v0.7.1 h1:xLGYZkezsukkSXwJN1tAC0oxSe3szTw8PPtILDSHmG8=
-github.com/git-pkgs/archives v0.7.1/go.mod h1:vnRwCQ4eZ87tFzMiQ3GVIrOW6igJyog+2ad5YYCC3xQ=
+github.com/git-pkgs/archives v0.8.0 h1:dCrJbSx64c3XBkEHJfr+td2klcuXIOEAnYdntbpOUCY=
+github.com/git-pkgs/archives v0.8.0/go.mod h1:vnRwCQ4eZ87tFzMiQ3GVIrOW6igJyog+2ad5YYCC3xQ=
 github.com/git-pkgs/magic v0.3.1 h1:UzjFRyEwJITA/JgznjmIM4VwuBszD2K4Q8XHgkgL+DM=
 github.com/git-pkgs/magic v0.3.1/go.mod h1:SXOqcsNmbmpZjJZHEEWnwxprbsFvpwWgTAZrgXp4Jm4=
 github.com/git-pkgs/purl v0.1.20 h1:a4qzvUy5mBZ2GGjOQNW2h/ocFqjTjOiTDMv2ONtivmM=
