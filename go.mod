@@ -7,12 +7,12 @@ toolchain go1.26.7
 require (
 	github.com/BurntSushi/toml v1.6.0
 	github.com/git-pkgs/archives v0.9.0
-	github.com/git-pkgs/purl v0.1.21
+	github.com/git-pkgs/purl v0.1.24
 )
 
 require (
 	github.com/git-pkgs/magic v0.5.0 // indirect
-	github.com/git-pkgs/vers v0.7.1 // indirect
+	github.com/git-pkgs/vers v0.7.2 // indirect
 	github.com/klauspost/compress v1.20.1 // indirect
 	github.com/package-url/packageurl-go v0.1.7 // indirect
 	github.com/ulikunitz/xz v0.5.17 // indirect
