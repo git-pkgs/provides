@@ -6,7 +6,7 @@ toolchain go1.26.7
 
 require (
 	github.com/BurntSushi/toml v1.6.0
-	github.com/git-pkgs/archives v0.9.0
+	github.com/git-pkgs/archives v0.10.0
 	github.com/git-pkgs/purl v0.1.24
 )
 
